@@ -38,6 +38,8 @@
    - Use the following credentials to log in as Admin:
      - **Username:** admin
      - **Password:** Pass12
+   - Copy and paste any one entire html from the Popup templates into the admin dashboard and visit the user page.
+   
 
 ## Notes
 - Ensure the `public/` folder is accessible.
