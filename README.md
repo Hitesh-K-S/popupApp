@@ -8,7 +8,7 @@
 
 1. **Clone the Repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Hitesh-K-S/popupApp.git
    ```
    Or download the project as a ZIP file and extract it.
 
