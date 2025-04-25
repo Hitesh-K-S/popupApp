@@ -25,6 +25,11 @@
 4. **Run the Application**
    - Place the project folder in the `htdocs` directory of your XAMPP installation.
    - Start Apache and MySQL from the XAMPP control panel.
+   - OR
+   - Run the following command in the project root dir
+   ```bash
+   php -S localhost:8000 -t public
+   ```
    - Open your browser and navigate to the following links:
      - **Admin Login:** `http://localhost:8000/admin/login`
      - **User Homepage:** `http://localhost:8000/user`
