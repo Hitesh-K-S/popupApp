@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Maintenance Notification</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body.popup-active {
+      overflow: hidden;
+    }
+
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .popup-content {
+      background: white;
+      padding: 32px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 420px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      position: relative;
+      text-align: center;
+      color: #333;
+      z-index: 10000;
+      animation: fadeIn 0.3s ease-out;
+      border: 1px solid #eaeaea;
+    }
+
+    .popup-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #222;
+    }
+
+    .popup-text {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #555;
+      margin-bottom: 24px;
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #4CAF50;
+      margin-right: 8px;
+      animation: pulse 1.5s infinite;
+    }
+
+    .status-text {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 22px;
+      font-weight: 300;
+      cursor: pointer;
+      color: #999;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .btn-acknowledge {
+      background: #222;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+
+    .btn-acknowledge:hover {
+      background: #111;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { opacity: 0.6; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="popup-overlay" id="maintenance-popup">
+  <div class="popup-content">
+    <button class="popup-close" onclick="closePopup('maintenance-popup')">&times;</button>
+    <h2 class="popup-title">Scheduled Maintenance</h2>
+    <p class="popup-text">Our systems will be undergoing maintenance on <strong>June 15, 2:00-4:00 AM EST</strong> to improve performance and reliability.</p>
+    
+    <div class="status-indicator">
+      <div class="status-dot"></div>
+      <div class="status-text">All systems operational</div>
+    </div>
+    
+    <button class="btn-acknowledge" onclick="closePopup('maintenance-popup')">Understood</button>
+  </div>
+</div>
+
+<script>
+  function showPopup(popupId, delay) {
+    setTimeout(() => {
+      const popup = document.getElementById(popupId);
+      if (popup) {
+        popup.style.display = 'flex';
+        document.body.classList.add('popup-active');
+      }
+    }, delay);
+  }
+
+  function closePopup(popupId) {
+    const popup = document.getElementById(popupId);
+    if (popup) {
+      popup.style.display = 'none';
+      document.body.classList.remove('popup-active');
+    }
+  }
+
+  // Show maintenance popup after 3 seconds
+  showPopup('maintenance-popup', 3000);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Newsletter Popup</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body.popup-active {
+      overflow: hidden;
+    }
+
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(6px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .popup-content {
+      background: linear-gradient(135deg, #43e97b, #38f9d7);
+      padding: 30px;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      position: relative;
+      text-align: center;
+      color: #1a3e2f;
+      z-index: 10000;
+      animation: slideUp 0.5s ease-out;
+    }
+
+    .newsletter-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      color: #1a3e2f;
+    }
+
+    .form-group {
+      margin: 20px 0;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 6px;
+      border: 1px solid rgba(0,0,0,0.1);
+      font-size: 1rem;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    .btn-subscribe {
+      background: #1a3e2f;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-subscribe:hover {
+      background: #0f2a1f;
+      transform: translateY(-2px);
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #1a3e2f;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="popup-overlay" id="newsletter-popup">
+  <div class="popup-content">
+    <span class="popup-close" onclick="closePopup('newsletter-popup')">&times;</span>
+    <div class="newsletter-icon">✉️</div>
+    <h2>Join Our Newsletter</h2>
+    <p>Get exclusive updates, offers, and content straight to your inbox.</p>
+    
+    <div class="form-group">
+      <input type="email" class="form-input" placeholder="Your email address" required>
+      <button class="btn-subscribe" onclick="closePopup('newsletter-popup')">Subscribe Now</button>
+    </div>
+    
+    <p style="font-size: 0.8rem;">We respect your privacy. Unsubscribe at any time.</p>
+  </div>
+</div>
+
+<script>
+  function showPopup(popupId, delay) {
+    setTimeout(() => {
+      const popup = document.getElementById(popupId);
+      if (popup) {
+        popup.style.display = 'flex';
+        document.body.classList.add('popup-active');
+      }
+    }, delay);
+  }
+
+  function closePopup(popupId) {
+    const popup = document.getElementById(popupId);
+    if (popup) {
+      popup.style.display = 'none';
+      document.body.classList.remove('popup-active');
+    }
+  }
+
+  // Show newsletter popup after 8 seconds
+  showPopup('newsletter-popup', 8000);
+</script>
+
+</body>
+</html>

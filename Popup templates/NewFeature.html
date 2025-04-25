@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>New Feature Announcement</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body.popup-active {
+      overflow: hidden;
+    }
+
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .popup-content {
+      background: white;
+      padding: 32px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      position: relative;
+      text-align: left;
+      color: #333;
+      z-index: 10000;
+      animation: scaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+      border: 1px solid #eaeaea;
+    }
+
+    .feature-badge {
+      background: #f0f7ff;
+      color: #0066cc;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .popup-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #222;
+    }
+
+    .popup-text {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #555;
+      margin-bottom: 24px;
+    }
+
+    .feature-image {
+      width: 100%;
+      height: 180px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="%23d1d5db" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 50px;
+      border: 1px dashed #d1d5db;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      background: #0066cc;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      flex: 1;
+    }
+
+    .btn-primary:hover {
+      background: #0052a3;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: #0066cc;
+      border: 1px solid #d1d5db;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      flex: 1;
+    }
+
+    .btn-secondary:hover {
+      background: #f8f9fa;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 22px;
+      font-weight: 300;
+      cursor: pointer;
+      color: #999;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="popup-overlay" id="feature-popup">
+  <div class="popup-content">
+    <button class="popup-close" onclick="closePopup('feature-popup')">&times;</button>
+    <div class="feature-badge">NEW FEATURE</div>
+    <h2 class="popup-title">Enhanced Dashboard</h2>
+    <div class="feature-image"></div>
+    <p class="popup-text">We've completely redesigned your dashboard with new analytics tools and customizable widgets to help you work more efficiently.</p>
+    
+    <div class="btn-group">
+      <button class="btn-primary" onclick="closePopup('feature-popup')">Try It Now</button>
+      <button class="btn-secondary" onclick="closePopup('feature-popup')">Learn More</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showPopup(popupId, delay) {
+    setTimeout(() => {
+      const popup = document.getElementById(popupId);
+      if (popup) {
+        popup.style.display = 'flex';
+        document.body.classList.add('popup-active');
+      }
+    }, delay);
+  }
+
+  function closePopup(popupId) {
+    const popup = document.getElementById(popupId);
+    if (popup) {
+      popup.style.display = 'none';
+      document.body.classList.remove('popup-active');
+    }
+  }
+
+  // Show feature popup after 4 seconds
+  showPopup('feature-popup', 4000);
+</script>
+
+</body>
+</html>
